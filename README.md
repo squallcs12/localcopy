@@ -19,6 +19,7 @@ pip install -r requirements.txt
 ```
 python manage.py runserver 80
 ```
+need root permission to open port 80 and auto clone
 
 # Clone 3rd-party source
 
@@ -31,12 +32,14 @@ python manage.py copy {url}
 ```
 python manage.py enable
 ```
+need root permission to edit hosts file
 
 # Disable service
 
 ```
 python manage.py disable
 ```
+need root permission to edit hosts file
 
 **This service auto clone any files from same domain that has been cloned before**
 

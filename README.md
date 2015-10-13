@@ -14,6 +14,11 @@ Clone this project and install requirements
 pip install -r requirements.txt
 ```
 
+Migrate database (a required step to run django server...), it use sqlite so dont worry
+```
+python manage.py migrate
+```
+
 # Start (python3)
 
 ```

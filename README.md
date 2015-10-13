@@ -4,9 +4,15 @@ Clone 3rd party source (javascript, css, etc) to local for developement.
 
 **This service run a django server on port 80, which may need sudo permission on linux and os x**
 
+# Requirement
+Python 3
+
 # Install
 
-Clone this project
+Clone this project and install requirements
+```
+pip install -r requirements.txt
+```
 
 # Start (python3)
 

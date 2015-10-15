@@ -1,9 +1,11 @@
 import os
-import urllib
+from urllib import parse
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 import requests
+
+from localcopy.utils import translate_path
 
 
 class Command(BaseCommand):
@@ -18,9 +20,9 @@ class Command(BaseCommand):
         if response.status_code >= 400:
             print("URL return status {code}".format(code=response.status_code))
             return
-        url_info = urllib.parse.urlparse(url)
+        url_info = parse.urlparse(url)
 
-        dirs = url_info.path.split("/")
+        dirs = translate_path(url_info.path, url_info.query).split("/")
         dirs[0] = url_info.hostname  # hostname as root
         file_name = dirs.pop()  # remove file name
 

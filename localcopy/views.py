@@ -19,10 +19,12 @@ def index(request, path):
 
     if not os.path.isfile(raw_path):
         management.call_command('disable')
-        url = "http://%s" % kwargs['path']
-        management.call_command('copy', url)
-        print("Copiedddddddddd %" % url)
-        management.call_command('enable')
+        try:
+            url = "http://%s/%s?%s" % (host, path, query)
+            management.call_command('copy', url)
+            print("Copiedddddddddd %" % url)
+        finally:
+            management.call_command('enable')
 
     return HttpResponseRedirect("/media2/%s/%s" % (host, path))
 

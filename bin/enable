@@ -1,2 +1,3 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+echo "This script need root permission in order to modify hosts file"
 sudo python "$DIR/manage.py" enable

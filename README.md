@@ -4,9 +4,6 @@ Clone 3rd party source (javascript, css, etc) to local for developement.
 
 **This service run a django server on port 80, which may need sudo permission on linux and os x**
 
-# Requirement
-Python 3
-
 # Install
 
 Clone this project and install requirements
@@ -19,7 +16,7 @@ Migrate database (a required step to run django server...), it use sqlite so don
 python manage.py migrate
 ```
 
-# Start (python3)
+# Start
 
 ```
 python manage.py runserver 80

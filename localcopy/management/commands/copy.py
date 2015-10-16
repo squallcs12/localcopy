@@ -1,5 +1,5 @@
 import os
-from urllib import parse
+from urlparse import urlparse
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -18,9 +18,9 @@ class Command(BaseCommand):
     def handle(self, url, **options):
         response = requests.get(url)
         if response.status_code >= 400:
-            print("URL return status {code}".format(code=response.status_code))
+            print("URL return status %s" % response.status_code)
             return
-        url_info = parse.urlparse(url)
+        url_info = urlparse(url)
 
         dirs = translate_path(url_info.path, url_info.query).split("/")
         dirs[0] = url_info.hostname  # hostname as root
@@ -35,3 +35,5 @@ class Command(BaseCommand):
         target_file = os.path.join(target_dir, file_name)
         with open(target_file, "wb") as f:
             f.write(response.content)
+
+        print("Cloned to local %s" % url)

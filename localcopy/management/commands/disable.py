@@ -1,10 +1,4 @@
 import os
-import sys
-import urllib
-
-from django.conf import settings
-from django.core.management.base import BaseCommand
-import requests
 
 from localcopy.management.toggle import Toggle
 
@@ -28,3 +22,5 @@ class Command(Toggle):
         with open(self.host_file, "w") as f:
             for line in content:
                 f.write(line)
+
+        print("Delete localcopy domains from host file")

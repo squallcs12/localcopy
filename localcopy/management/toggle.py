@@ -9,7 +9,7 @@ import requests
 
 class Toggle(BaseCommand):
     host_file = ""
-    if 'linux' in sys.platform:
+    if 'linux' in sys.platform or 'darwin' in sys.platform:
         host_file = "/etc/hosts"
 
     start_line = "# localcopy start ======"

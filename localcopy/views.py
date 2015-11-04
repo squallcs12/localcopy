@@ -15,9 +15,14 @@ def index(request, path):
     host = request.META['HTTP_HOST']
     query = request.META['QUERY_STRING']
     path = translate_path(path, query)
-    raw_path = os.path.join(settings.BASE_DIR, path)
+    return HttpResponseRedirect("/media2/%s/%s" % (host, path))
 
-    if not os.path.isfile(raw_path):
+def static(request, *args, **kwargs):
+    try:
+        response = serve(request, *args, **kwargs)
+        response['Access-Control-Allow-Origin'] = '*'
+        return response
+    except:
         management.call_command('disable')
         try:
             url = "http://%s/%s?%s" % (host, path, query)
@@ -25,11 +30,4 @@ def index(request, path):
             print("Copiedddddddddd %" % url)
         finally:
             management.call_command('enable')
-
-    return HttpResponseRedirect("/media2/%s/%s" % (host, path))
-
-
-def static(request, *args, **kwargs):
-    response = serve(request, *args, **kwargs)
-    response['Access-Control-Allow-Origin'] = '*'
-    return response
+        raise
